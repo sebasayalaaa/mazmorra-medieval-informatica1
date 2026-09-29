@@ -29,8 +29,13 @@ public class Jugador {
         inventario.add(objeto);
     }
 
-    // TODO: busqueda lineal en el inventario por nombre, devolver null si no esta
+    // Busqueda lineal: recorre el inventario comparando nombres
     public Objeto buscarObjetoPorNombre(String nombre) {
+        for (int i = 0; i < inventario.size(); i++) {
+            if (inventario.get(i).getNombre().equalsIgnoreCase(nombre)) {
+                return inventario.get(i);
+            }
+        }
         return null;
     }
 
@@ -38,14 +43,29 @@ public class Jugador {
         return buscarObjetoPorNombre(nombre) != null;
     }
 
-    // TODO: ordenar el inventario por valor (Bubble Sort, ver TP16)
+    // Bubble Sort (ver TP16) ordenando de menor a mayor valor
     public void ordenarInventarioPorValor() {
+        int n = inventario.size();
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - 1 - i; j++) {
+                if (inventario.get(j).getValor() > inventario.get(j + 1).getValor()) {
+                    Objeto temp = inventario.get(j);
+                    inventario.set(j, inventario.get(j + 1));
+                    inventario.set(j + 1, temp);
+                }
+            }
+        }
     }
 
     public void mostrarInventario() {
+        ordenarInventarioPorValor();
         System.out.println("--- Inventario de " + nombre + " ---");
+        if (inventario.isEmpty()) {
+            System.out.println("(vacío)");
+            return;
+        }
         for (Objeto o : inventario) {
-            System.out.println("- " + o.getNombre() + ": " + o.getDescripcion());
+            System.out.println("- " + o.getNombre() + " (valor " + o.getValor() + "): " + o.getDescripcion());
         }
     }
 

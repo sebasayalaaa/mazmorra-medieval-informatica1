@@ -37,13 +37,21 @@ public class Sala {
         return descripcion;
     }
 
-    // TODO: usar esta direccion para decidir si hay salida (norte/sur/este/oeste != -1)
     public boolean tieneSalida(String direccion) {
         return getSalidaHacia(direccion) != -1;
     }
 
-    // TODO: devolver el id de la sala vecina segun la direccion, o -1 si no hay salida
     public int getSalidaHacia(String direccion) {
+        String d = direccion.trim().toLowerCase();
+        if (d.equals("norte")) {
+            return norte;
+        } else if (d.equals("sur")) {
+            return sur;
+        } else if (d.equals("este")) {
+            return este;
+        } else if (d.equals("oeste")) {
+            return oeste;
+        }
         return -1;
     }
 
