@@ -10,6 +10,7 @@ public class Sala {
     private boolean esTrampa;
     private boolean esFinal;
     private boolean visitada;
+    private String itemRequerido;
 
     public Sala(int id, String nombre, String descripcion, int norte, int sur, int este, int oeste) {
         this.id = id;
@@ -23,6 +24,7 @@ public class Sala {
         this.esTrampa = false;
         this.esFinal = false;
         this.visitada = false;
+        this.itemRequerido = null;
     }
 
     public int getId() {
@@ -85,5 +87,15 @@ public class Sala {
 
     public void setVisitada(boolean visitada) {
         this.visitada = visitada;
+    }
+
+    public String getItemRequerido() {
+        return itemRequerido;
+    }
+
+    // El nombre del objeto que hace falta tener para poder entrar a esta sala.
+    // null significa que la sala no pide nada para entrar.
+    public void setItemRequerido(String itemRequerido) {
+        this.itemRequerido = itemRequerido;
     }
 }

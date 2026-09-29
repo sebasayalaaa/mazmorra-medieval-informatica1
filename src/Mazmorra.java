@@ -23,23 +23,38 @@ public class Mazmorra {
 
         Sala pasilloOscuro = new Sala(2, "Pasillo Oscuro",
                 "No se ve absolutamente nada. Sin una fuente de luz es imposible seguir.",
-                4, 1, -1, -1);
+                5, 1, -1, -1);
         pasilloOscuro.setEsTrampa(true);
+        pasilloOscuro.setItemRequerido("Antorcha");
 
         Sala salaCofre = new Sala(3, "Sala del Cofre",
                 "Un cofre de madera vieja está entreabierto en el centro de la sala.",
                 -1, -1, -1, 1);
         salaCofre.setObjeto(new Objeto("Llave Dorada", "Una llave ornamentada, parece abrir algo importante.", 50, true));
 
+        Sala estatuas = new Sala(5, "Sala de las Estatuas",
+                "Estatuas de piedra de antiguos guerreros custodian la sala. Una todavía sostiene un escudo intacto.",
+                -1, 2, 6, -1);
+        estatuas.setObjeto(new Objeto("Escudo", "Un escudo de guerrero, pesado pero firme.", 30, false));
+
+        Sala fosoPinchos = new Sala(6, "Foso de Pinchos",
+                "El piso está cubierto de pinchos oxidados. Cruzar sin protección es una sentencia de muerte.",
+                4, -1, -1, 5);
+        fosoPinchos.setEsTrampa(true);
+        fosoPinchos.setItemRequerido("Escudo");
+
         Sala camaraFinal = new Sala(4, "Cámara Final",
                 "Una puerta enorme con una cerradura dorada bloquea la salida de la mazmorra.",
-                -1, 2, -1, -1);
+                -1, 6, -1, -1);
         camaraFinal.setEsFinal(true);
+        camaraFinal.setItemRequerido("Llave Dorada");
 
         mapa.add(entrada);
         mapa.add(antorchas);
         mapa.add(pasilloOscuro);
         mapa.add(salaCofre);
+        mapa.add(estatuas);
+        mapa.add(fosoPinchos);
         mapa.add(camaraFinal);
     }
 
@@ -76,11 +91,12 @@ public class Mazmorra {
         int destinoId = actual.getSalidaHacia(direccion);
         Sala destino = buscarSalaPorId(destinoId);
 
-        if (destino.isEsTrampa() && !jugador.tieneObjeto("Antorcha")) {
-            throw new SalidaInvalidaException("Está muy oscuro para seguir sin una antorcha. Te perdés en la oscuridad...", true);
-        }
-        if (destino.isEsFinal() && !jugador.tieneObjeto("Llave Dorada")) {
-            throw new SalidaInvalidaException("La puerta está cerrada con llave. No podés forzarla...", true);
+        // Cualquier sala con itemRequerido bloquea el paso si el jugador no lo tiene.
+        // No importa si es una trampa o la puerta final: la regla es la misma,
+        // así que agregar una sala bloqueada nueva no requiere tocar este método.
+        if (destino.getItemRequerido() != null && !jugador.tieneObjeto(destino.getItemRequerido())) {
+            String mensaje = "Te falta " + destino.getItemRequerido() + " para poder seguir. No es seguro continuar así...";
+            throw new SalidaInvalidaException(mensaje, true);
         }
 
         jugador.moverA(destinoId);

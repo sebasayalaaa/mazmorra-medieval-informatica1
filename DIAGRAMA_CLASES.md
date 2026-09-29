@@ -20,6 +20,7 @@ classDiagram
         -boolean esTrampa
         -boolean esFinal
         -boolean visitada
+        -String itemRequerido
         +Sala(id, nombre, descripcion, norte, sur, este, oeste)
         +getId() int
         +getNombre() String
@@ -28,6 +29,8 @@ classDiagram
         +getSalidaHacia(direccion) int
         +getObjeto() Objeto
         +setObjeto(Objeto o)
+        +getItemRequerido() String
+        +setItemRequerido(String nombre)
         +isEsTrampa() boolean
         +isEsFinal() boolean
         +isVisitada() boolean
@@ -79,7 +82,7 @@ classDiagram
         +main(String[] args)
     }
 
-    Mazmorra "1" *-- "5" Sala : contiene
+    Mazmorra "1" *-- "7" Sala : contiene
     Mazmorra "1" o-- "1" Jugador : controla
     Sala "1" o-- "0..1" Objeto : puede tener
     Jugador "1" o-- "*" Objeto : inventario
