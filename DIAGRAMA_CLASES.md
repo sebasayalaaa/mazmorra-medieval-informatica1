@@ -79,7 +79,7 @@ classDiagram
         +main(String[] args)
     }
 
-    Mazmorra "1" *-- "6" Sala : contiene
+    Mazmorra "1" *-- "5" Sala : contiene
     Mazmorra "1" o-- "1" Jugador : controla
     Sala "1" o-- "0..1" Objeto : puede tener
     Jugador "1" o-- "*" Objeto : inventario
