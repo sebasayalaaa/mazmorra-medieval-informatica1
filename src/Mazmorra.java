@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 // Clase principal del juego: arma el mapa, contiene el menu y el bucle de
@@ -128,13 +129,24 @@ public class Mazmorra {
             mostrarSalaActual();
             System.out.println("1) Moverse  2) Tomar objeto  3) Ver inventario  4) Usar objeto  5) Salir");
             System.out.print("Opción: ");
-            int opcion = sc.nextInt();
+            int opcion;
+            try {
+                opcion = sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Eso no es un número. Elegí una opción del 1 al 5.");
+                sc.nextLine();
+                continue;
+            }
             sc.nextLine();
 
             switch (opcion) {
                 case 1: {
                     System.out.print("Dirección (norte/sur/este/oeste): ");
                     String direccion = sc.nextLine();
+                    if (direccion.trim().isEmpty()) {
+                        System.out.println("Tenés que escribir una dirección: norte, sur, este u oeste.");
+                        break;
+                    }
                     try {
                         procesarMovimiento(direccion);
                         System.out.println("Caminás hacia el " + direccion.trim().toLowerCase() + "...");
