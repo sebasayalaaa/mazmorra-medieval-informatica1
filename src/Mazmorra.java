@@ -84,6 +84,7 @@ public class Mazmorra {
         if (actual.getObjeto() != null) {
             System.out.println("Hay un objeto acá: " + actual.getObjeto().getNombre());
         }
+        System.out.println("Salidas: " + actual.getSalidasDisponibles());
     }
 
     public void procesarMovimiento(String direccion) throws SalidaInvalidaException {
@@ -136,6 +137,7 @@ public class Mazmorra {
                     String direccion = sc.nextLine();
                     try {
                         procesarMovimiento(direccion);
+                        System.out.println("Caminás hacia el " + direccion.trim().toLowerCase() + "...");
                         if (getSalaActual().isEsFinal()) {
                             System.out.println();
                             System.out.println("¡La puerta se abre con la Llave Dorada! Escapaste de la mazmorra.");

@@ -60,6 +60,29 @@ public class Sala {
         return -1;
     }
 
+    // Arma un texto con las direcciones que realmente tienen salida desde
+    // esta sala (ej: "norte, este"), para guiar al jugador antes de que
+    // elija moverse en vez de que tenga que adivinar.
+    public String getSalidasDisponibles() {
+        String salidas = "";
+        if (norte != -1) {
+            salidas += "norte, ";
+        }
+        if (sur != -1) {
+            salidas += "sur, ";
+        }
+        if (este != -1) {
+            salidas += "este, ";
+        }
+        if (oeste != -1) {
+            salidas += "oeste, ";
+        }
+        if (salidas.isEmpty()) {
+            return "(ninguna)";
+        }
+        return salidas.substring(0, salidas.length() - 2);
+    }
+
     public Objeto getObjeto() {
         return objeto;
     }
