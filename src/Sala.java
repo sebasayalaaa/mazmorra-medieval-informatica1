@@ -1,3 +1,6 @@
+// Representa una habitacion de la mazmorra: tiene descripcion, hasta 4
+// salidas (norte/sur/este/oeste, -1 si no existe esa salida), puede tener
+// un objeto para recoger, y puede estar bloqueada por itemRequerido.
 public class Sala {
     private int id;
     private String nombre;

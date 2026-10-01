@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// Clase principal del juego: arma el mapa, contiene el menu y el bucle de
+// partida (main() esta aca). No modela una entidad del dominio como Sala,
+// Objeto o Jugador, sino que orquesta el juego usando esas tres clases.
 public class Mazmorra {
     private ArrayList<Sala> mapa;
     private Jugador jugador;
@@ -11,6 +14,8 @@ public class Mazmorra {
         this.jugador = new Jugador("Aventurero", 0);
     }
 
+    // Crea las 7 salas de la mazmorra y las conecta entre si por id
+    // (ver DISENO.md para el mapa completo con el dibujo de las conexiones).
     private void construirMapa() {
         Sala entrada = new Sala(0, "Entrada de la Mazmorra",
                 "Una escalera de piedra húmeda baja hacia la oscuridad. Solo hay salida hacia el norte.",
@@ -103,6 +108,10 @@ public class Mazmorra {
         destino.setVisitada(true);
     }
 
+    // Bucle principal del juego: muestra la sala actual, el menu, lee la
+    // opcion elegida y la ejecuta. Sigue repitiendo hasta que el jugador
+    // gana (llega a la Camara Final con la llave), pierde (excepcion
+    // fatal) o elige salir.
     public void iniciarPartida() {
         Scanner sc = new Scanner(System.in);
         boolean jugando = true;

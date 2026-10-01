@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+// Representa al aventurero que explora la mazmorra: sabe en que sala esta
+// parado y que objetos lleva en su inventario (ArrayList<Objeto>).
 public class Jugador {
     private String nombre;
     private int salaActualId;

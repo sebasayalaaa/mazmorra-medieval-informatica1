@@ -1,3 +1,5 @@
+// Representa un objeto que el jugador puede encontrar en una sala y llevar
+// en su inventario (ej: Antorcha, Escudo, Llave Dorada).
 public class Objeto {
     private String nombre;
     private String descripcion;
