@@ -116,6 +116,13 @@ public class Mazmorra {
         Scanner sc = new Scanner(System.in);
         boolean jugando = true;
 
+        System.out.println("=================================");
+        System.out.println("      LA MAZMORRA MEDIEVAL");
+        System.out.println("=================================");
+        System.out.println("Quedaste atrapado en una mazmorra. Para escapar tenés que");
+        System.out.println("llegar a la Cámara Final, pero el camino tiene dos pasos");
+        System.out.println("bloqueados que vas a necesitar resolver explorando primero.");
+
         while (jugando) {
             mostrarSalaActual();
             System.out.println("1) Moverse  2) Tomar objeto  3) Ver inventario  4) Usar objeto  5) Salir");
