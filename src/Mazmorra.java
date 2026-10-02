@@ -23,7 +23,7 @@ public class Mazmorra {
                 1, -1, -1, -1);
 
         Sala antorchas = new Sala(1, "Sala de las Antorchas",
-                "Antorchas apagadas cuelgan de las paredes. Hay una que todavía se puede usar.",
+                "Antorchas apagadas cuelgan de las paredes, cubiertas de telarañas y polvo de siglos.",
                 2, 0, 3, -1);
         antorchas.setObjeto(new Objeto("Antorcha", "Ilumina el camino en la oscuridad.", 10, false));
 
@@ -39,7 +39,7 @@ public class Mazmorra {
         salaCofre.setObjeto(new Objeto("Llave Dorada", "Una llave ornamentada, parece abrir algo importante.", 50, true));
 
         Sala estatuas = new Sala(5, "Sala de las Estatuas",
-                "Estatuas de piedra de antiguos guerreros custodian la sala. Una todavía sostiene un escudo intacto.",
+                "Estatuas de piedra de antiguos guerreros custodian la sala en silencio.",
                 -1, 2, 6, -1);
         estatuas.setObjeto(new Objeto("Escudo", "Un escudo de guerrero, pesado pero firme.", 30, false));
 
@@ -121,9 +121,13 @@ public class Mazmorra {
         System.out.println("=================================");
         System.out.println("      LA MAZMORRA MEDIEVAL");
         System.out.println("=================================");
-        System.out.println("Quedaste atrapado en una mazmorra. Para escapar tenés que");
-        System.out.println("llegar a la Cámara Final, pero el camino tiene dos pasos");
-        System.out.println("bloqueados que vas a necesitar resolver explorando primero.");
+        System.out.println("Te despertás tirado en el piso de piedra, sin recordar cómo");
+        System.out.println("llegaste hasta acá. Las antorchas de los pasillos están apagadas");
+        System.out.println("y la única salida parece estar muy al fondo de la mazmorra.");
+        System.out.println();
+        System.out.println("Objetivo: llegar a la Cámara Final y escapar.");
+        System.out.println("En el camino hay dos pasos bloqueados que vas a necesitar");
+        System.out.println("resolver explorando y juntando objetos primero.");
 
         while (jugando) {
             mostrarSalaActual();
